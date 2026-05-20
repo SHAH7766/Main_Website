@@ -7,7 +7,7 @@ export default function Navbar(){
     <nav className="fixed w-full z-30 top-0 border-b border-alice_blue/10 bg-baltic_blue-100/80 backdrop-blur-xl shadow-lg shadow-baltic_blue-100/25 animate-drop-in">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <a href="#" className="group font-bold text-alice_blue text-lg">
-          Brick <span className="text-lime_moss-600 transition-colors group-hover:text-alice_blue">& Pixel</span>
+          Zenthic
         </a>
         <div className="hidden md:flex gap-2 items-center text-sm text-alice_blue/80">
           <a href="#services" className="nav-link">Services</a>

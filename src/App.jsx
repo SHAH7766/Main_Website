@@ -15,7 +15,7 @@ export default function App() {
         <Results />
         <Contact />
       </main>
-      <footer className="site-footer">(c) {new Date().getFullYear()} Brick & Pixel - All rights reserved</footer>
+      <footer className="site-footer">(c) {new Date().getFullYear()} Zenthic - All rights reserved</footer>
     </div>
   )
 }

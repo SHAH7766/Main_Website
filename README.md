@@ -1,4 +1,4 @@
-# Agency Website (Vite + React)
+# Zenthic Website (Vite + React)
 
 Minimal starter for an agency landing site (digital marketing, AI automation, web design).
 
