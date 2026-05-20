@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{--bg:#01151d}
+
+html{scroll-behavior:smooth}
+html,body,#root{height:100%}
+body{@apply bg-baltic_blue-100 text-alice_blue antialiased}
+.app-root{position:relative;overflow:hidden}
+.app-root::before{content:'';position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(165,190,0,.05),transparent 24%,rgba(66,122,161,.08) 70%,transparent);z-index:0}
+.app-root > *{position:relative;z-index:1}
+
+/* hero section */
+.hero{position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:-3%;background-image:url('./assets/hero-abstract.svg');background-size:cover;background-position:center;filter:saturate(1.25) brightness(0.95);animation:hero-drift 22s ease-in-out infinite}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(235,242,250,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(235,242,250,.06) 1px, transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom, transparent, black 20%, transparent 82%);opacity:.55}
+
+/* small utilities */
+.site-footer{@apply text-alice_blue/70 py-6 text-center border-t border-alice_blue/10 bg-baltic_blue-100}
+
+.nav-link{@apply relative px-3 py-2 transition-colors duration-200 hover:text-alice_blue}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.3rem;height:1px;background:#a5be00;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-link:hover::after{transform:scaleX(1)}
+.mobile-nav-link{@apply block py-3 text-alice_blue/85 transition-colors hover:text-alice_blue}
+.menu-button{@apply flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded border border-alice_blue/15 bg-alice_blue/5 text-alice_blue transition hover:bg-alice_blue/10}
+.menu-line{@apply block h-0.5 w-5 rounded-full bg-alice_blue transition duration-200}
+
+.hero-badge{@apply mb-6 inline-flex items-center gap-2 border border-lime_moss/40 bg-lime_moss/10 px-4 py-2 text-xs font-semibold uppercase text-lime_moss-800 shadow-lg shadow-baltic_blue-100/20 animate-fade-in-up}
+.hero-title{@apply mx-auto max-w-5xl text-4xl font-extrabold leading-tight text-alice_blue sm:text-5xl md:text-7xl animate-fade-in-up animation-delay-100}
+.hero-copy{@apply mx-auto mt-5 max-w-2xl text-lg leading-8 text-rich_cerulean-900/85 animate-fade-in-up animation-delay-200}
+.hero-stats{@apply mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-3 text-left sm:grid-cols-3 animate-fade-in-up animation-delay-500}
+.hero-stats div{@apply border border-alice_blue/10 bg-alice_blue/[0.04] p-4 shadow-xl shadow-baltic_blue-100/20 backdrop-blur}
+.hero-stats strong{@apply block text-2xl text-alice_blue}
+.hero-stats span{@apply mt-1 block text-sm text-rich_cerulean-900/80}
+.hero-preview{@apply mx-auto mt-8 max-w-4xl overflow-hidden border border-alice_blue/10 bg-baltic_blue-100/55 p-4 text-left shadow-2xl shadow-baltic_blue-100/30 backdrop-blur}
+.preview-toolbar{@apply flex gap-2 border-b border-alice_blue/10 pb-3}
+.preview-toolbar span{@apply h-2.5 w-2.5 rounded-full bg-lime_moss/70}
+.preview-body{@apply grid gap-5 pt-5 sm:grid-cols-[1.2fr_0.8fr]}
+.preview-chart{@apply flex h-32 items-end gap-3 border border-alice_blue/10 bg-alice_blue/[0.035] p-4}
+.preview-chart i{@apply block flex-1 bg-gradient-to-t from-lime_moss to-rich_cerulean-800}
+.preview-copy{@apply flex flex-col justify-center gap-4}
+.preview-copy span{@apply block h-3 rounded-full bg-rich_cerulean-800/45}
+.preview-copy span:nth-child(1){width:80%}
+.preview-copy span:nth-child(2){width:62%}
+.preview-copy span:nth-child(3){width:72%}
+
+.primary-button{@apply inline-flex items-center justify-center border border-lime_moss/50 bg-sage_green px-7 py-3 text-sm font-semibold text-alice_blue shadow-lg shadow-sage_green/25 transition duration-300 hover:-translate-y-0.5 hover:bg-sage_green-600 hover:shadow-lime_moss/30 focus:outline-none focus:ring-2 focus:ring-lime_moss focus:ring-offset-2 focus:ring-offset-baltic_blue-100}
+.secondary-button{@apply inline-flex items-center justify-center border border-alice_blue/25 bg-alice_blue/[0.06] px-7 py-3 text-sm font-semibold text-alice_blue transition duration-300 hover:-translate-y-0.5 hover:bg-alice_blue/15}
+
+.section-band{@apply relative overflow-hidden bg-gradient-to-b from-baltic_blue-100 to-baltic_blue-300/70 py-20}
+.section-band-alt{@apply from-baltic_blue-300/70 to-baltic_blue-100}
+.section-kicker{@apply text-sm font-semibold uppercase tracking-[0.28em] text-lime_moss-700}
+.section-title{@apply mt-3 text-3xl font-bold text-alice_blue sm:text-4xl}
+.section-copy{@apply mt-3 max-w-2xl text-rich_cerulean-900/80}
+
+.service-card{@apply relative overflow-hidden border border-alice_blue/10 bg-alice_blue/[0.045] p-6 shadow-xl shadow-baltic_blue-100/15 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-lime_moss/40 hover:bg-alice_blue/[0.07] hover:shadow-lime_moss/10}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(165,190,0,.16),transparent 38%);opacity:0;transition:opacity .3s ease}
+.service-card:hover::before{opacity:1}
+.service-card > *{position:relative}
+.service-image-wrap{@apply -mx-2 -mt-2 mb-5 overflow-hidden border border-alice_blue/10 bg-baltic_blue-100/70}
+.service-image{@apply block aspect-[16/9] w-full object-cover transition duration-500}
+.service-card:hover .service-image{transform:scale(1.05)}
+.service-index{@apply mb-8 text-sm font-semibold text-lime_moss-700}
+.service-points{@apply mt-5 flex flex-wrap gap-2}
+.service-points span{@apply border border-alice_blue/10 bg-baltic_blue-100/50 px-3 py-1 text-xs font-semibold text-rich_cerulean-900}
+.service-cta{@apply mt-8 flex flex-col items-start justify-between gap-4 border border-lime_moss/20 bg-lime_moss/10 p-5 sm:flex-row sm:items-center}
+.service-cta p{@apply font-semibold text-alice_blue}
+.service-cta a{@apply text-sm font-bold uppercase tracking-[0.18em] text-lime_moss-700 transition hover:text-lime_moss-600}
+
+.results-section{@apply bg-baltic_blue-100 py-20}
+.results-shell{@apply grid gap-6 border-y border-alice_blue/10 py-8 md:grid-cols-[1fr_0.85fr] md:items-end}
+.results-grid{@apply mt-8 grid gap-5 md:grid-cols-3}
+.result-card{@apply border border-alice_blue/10 bg-gradient-to-b from-alice_blue/[0.07] to-alice_blue/[0.025] p-6 shadow-xl shadow-baltic_blue-100/20 transition duration-300 hover:-translate-y-1 hover:border-lime_moss/35}
+.result-card span{@apply text-sm font-bold text-lime_moss-700}
+.result-card h3{@apply mt-8 text-xl font-semibold text-alice_blue}
+.result-card p{@apply mt-3 text-rich_cerulean-900/80}
+
+.contact-layout{@apply mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[0.9fr_1.1fr] md:items-center}
+.contact-copy{@apply text-left}
+.contact-promises{@apply mt-7 grid gap-3}
+.contact-promises span{@apply border-l-2 border-lime_moss bg-alice_blue/[0.04] px-4 py-3 text-sm font-semibold text-rich_cerulean-900}
+.contact-form{@apply grid gap-4 border border-alice_blue/10 bg-alice_blue/[0.045] p-5 text-left shadow-2xl shadow-baltic_blue-100/25 backdrop-blur animate-fade-in-up sm:p-6}
+.field{@apply w-full border border-rich_cerulean-700/60 bg-baltic_blue-100/70 px-4 py-3 text-alice_blue outline-none transition duration-200 placeholder:text-rich_cerulean-900/45 focus:border-lime_moss focus:bg-baltic_blue-100 focus:ring-2 focus:ring-lime_moss/25}
+
+.animation-delay-100{animation-delay:100ms}
+.animation-delay-200{animation-delay:200ms}
+.animation-delay-300{animation-delay:300ms}
+.animation-delay-500{animation-delay:500ms}
+
+@keyframes hero-drift{
+  0%,100%{transform:scale(1) translate3d(0,0,0)}
+  50%{transform:scale(1.04) translate3d(0,-10px,0)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
