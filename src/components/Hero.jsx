@@ -1,54 +1,41 @@
 import React from 'react'
+import dashboardImage from '../assets/hero-dashboard.svg'
 
 export default function Hero() {
   return (
     <header className="hero min-h-screen pt-24">
       <div className="hero-bg absolute inset-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_26%,rgba(165,190,0,0.18),transparent_32%),radial-gradient(circle_at_15%_52%,rgba(255,122,89,0.16),transparent_26%),linear-gradient(180deg,rgba(1,21,29,0.66),rgba(1,21,29,0.97))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,15,26,0.86)_0%,rgba(4,45,75,0.86)_58%,rgba(55,192,246,0.88)_100%)]" />
       <div className="hero-grid" />
-      <div className="hero-content relative z-10 max-w-6xl mx-auto px-4 pb-16 pt-20 sm:pt-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="hero-badge">AI automation systems for service businesses</p>
-          <h1 className="hero-title">Automate your follow-up before warm leads go cold.</h1>
-          <p className="hero-copy">Zenthic builds AI agents, CRM workflows, missed-call text-back, booking reminders, and pipeline alerts that keep every inquiry moving without adding more admin work.</p>
-          <div className="mt-9 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up animation-delay-300">
-            <a className="primary-button" href="#contact">Get an automation audit</a>
-            <a className="secondary-button" href="#services">See what we automate</a>
+      <div className="hero-split relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-10 px-4 pb-16 pt-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-8 lg:pt-8">
+        <div className="hero-copy-column">
+          <p className="hero-badge"><span className="badge-bolt">AI</span> Power up your business with AI</p>
+          <h1 className="hero-title">The AI-powered business operating system</h1>
+          <p className="hero-copy">All the tools you need to capture, nurture and close new leads into bookings, sales, reviews and repeat customers.</p>
+          <div className="hero-actions animate-fade-in-up animation-delay-300">
+            <a className="hero-trial-button" href="#contact">
+              <span>Start 14 Day Free Trial</span>
+              <b aria-hidden="true">&gt;</b>
+            </a>
           </div>
-          <div className="hero-proof animate-fade-in-up animation-delay-500" aria-label="Automation benefits">
-            <span>No missed-call leaks</span>
-            <span>CRM-ready workflows</span>
-            <span>Built for service teams</span>
+          <div className="hero-trust-row animate-fade-in-up animation-delay-500" aria-label="AI automation highlights">
+            <span>Instant AI replies</span>
+            <span>Missed-call text back</span>
+            <span>Booking automation</span>
           </div>
         </div>
-        <div className="hero-stats" aria-label="Business outcomes">
-          <div><strong>60 sec</strong><span>target response time for new inquiries</span></div>
-          <div><strong>24/7</strong><span>AI replies, reminders, and missed-call recovery</span></div>
-          <div><strong>14 days</strong><span>to launch your first automation stack</span></div>
-        </div>
-        <div className="hero-preview animate-fade-in-up animation-delay-500" aria-label="Growth dashboard preview">
-          <div className="preview-toolbar">
-            <span></span>
-            <span></span>
-            <span></span>
-            <p>Live growth command center</p>
+
+        <div className="hero-image-wrap animate-fade-in-up animation-delay-200">
+          <div className="hero-float-card hero-float-card-top">
+            <span>AI lead reply</span>
+            <strong>12 sec</strong>
           </div>
-          <div className="preview-body">
-            <div className="preview-pipeline">
-              {['Lead in', 'AI qualify', 'Booked', 'Reminder', 'Review'].map((stage, index) => (
-                <div key={stage}>
-                  <span>{stage}</span>
-                  <strong>{[42, 37, 21, 18, 14][index]}</strong>
-                </div>
-              ))}
-            </div>
-            <div className="preview-panel">
-              <p>Automation queue</p>
-              <span>Reply to 7 new leads</span>
-              <span>Confirm 4 bookings</span>
-              <span>Request 14 reviews</span>
-            </div>
+          <div className="hero-float-card hero-float-card-bottom">
+            <span>Booked this week</span>
+            <strong>+38%</strong>
           </div>
+          <div className="hero-play-pulse" aria-hidden="true"></div>
+          <img src={dashboardImage} alt="AI business operating system dashboard" className="hero-dashboard-image" />
         </div>
       </div>
     </header>

@@ -1,22 +1,90 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 
 const results = [
   {
-    value: '< 1 min',
-    title: 'Faster first touch',
-    desc: 'Automated replies reach new leads quickly, even when your team is busy or closed.'
+    value: 6744716,
+    suffix: '+',
+    title: 'AI voice calls',
+    desc: 'Automated conversations handled across lead intake and follow-up.'
   },
   {
-    value: '24/7',
-    title: 'Always-on nurture',
-    desc: 'Leads get reminders, answers, and next steps without waiting for a manual follow-up.'
+    value: 7296353084,
+    title: 'Leads generated',
+    desc: 'Prospects captured, qualified, routed, and prepared for follow-up.'
   },
   {
-    value: '0 gaps',
-    title: 'Cleaner handoffs',
-    desc: 'Qualified leads, overdue tasks, and hot opportunities are routed to the right person.'
+    value: 172727305,
+    title: 'Appointments booked',
+    desc: 'Bookings supported by reminders, confirmations, and no-show recovery.'
+  },
+  {
+    value: 5010615658,
+    prefix: '$',
+    suffix: '+',
+    title: 'Sales facilitated in 2025',
+    desc: 'Pipeline value influenced by faster response and automated nurture.'
   }
 ]
+
+function AnimatedNumber({value, prefix = '', suffix = ''}) {
+  const ref = useRef(null)
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return undefined
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) {
+      setDisplay(value)
+      return undefined
+    }
+
+    let frameId
+    let started = false
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started) return
+
+        started = true
+        const duration = 1800
+        const start = performance.now()
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1)
+          const eased = 1 - Math.pow(1 - progress, 3)
+          setDisplay(Math.floor(value * eased))
+
+          if (progress < 1) {
+            frameId = requestAnimationFrame(tick)
+          } else {
+            setDisplay(value)
+          }
+        }
+
+        frameId = requestAnimationFrame(tick)
+        observer.disconnect()
+      },
+      {threshold: 0.35}
+    )
+
+    observer.observe(node)
+
+    return () => {
+      observer.disconnect()
+      if (frameId) cancelAnimationFrame(frameId)
+    }
+  }, [value])
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {display.toLocaleString('en-US')}
+      {suffix}
+    </span>
+  )
+}
 
 export default function Results() {
   return (
@@ -32,7 +100,7 @@ export default function Results() {
         <div className="results-grid">
           {results.map((item) => (
             <article className="result-card" key={item.title}>
-              <span>{item.value}</span>
+              <AnimatedNumber value={item.value} prefix={item.prefix} suffix={item.suffix} />
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
             </article>
