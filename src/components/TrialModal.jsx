@@ -4,9 +4,12 @@ const initialForm = {
   company: '',
   name: '',
   email: '',
+  website: '',
+  countryCode: '+1',
   phone: '',
   goal: '',
   volume: '',
+  timeline: '',
   message: '',
 }
 
@@ -90,10 +93,37 @@ export default function TrialModal() {
 
         {step === 1 ? (
           <form className="trial-form" onSubmit={handleNext}>
-            <input name="company" value={form.company} onChange={handleChange} placeholder="Company name..." required />
-            <input name="name" value={form.name} onChange={handleChange} placeholder="Full name..." required />
-            <input name="email" value={form.email} onChange={handleChange} placeholder="Email address..." type="email" required />
-            <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone number..." type="tel" required />
+            <div className="trial-field-grid">
+              <label className="trial-field">
+                <span>Company</span>
+                <input name="company" value={form.company} onChange={handleChange} placeholder="Company name..." required />
+              </label>
+              <label className="trial-field">
+                <span>Full name</span>
+                <input name="name" value={form.name} onChange={handleChange} placeholder="Full name..." required />
+              </label>
+            </div>
+            <label className="trial-field">
+              <span>Email address</span>
+              <input name="email" value={form.email} onChange={handleChange} placeholder="you@company.com" type="email" required />
+            </label>
+            <label className="trial-field">
+              <span>Website or social page</span>
+              <input name="website" value={form.website} onChange={handleChange} placeholder="https://yourwebsite.com" type="url" />
+            </label>
+            <label className="trial-field">
+              <span>Phone number</span>
+              <div className="phone-field">
+                <select name="countryCode" value={form.countryCode} onChange={handleChange} aria-label="Country code">
+                  <option value="+1">US +1</option>
+                  <option value="+44">UK +44</option>
+                  <option value="+61">AU +61</option>
+                  <option value="+92">PK +92</option>
+                  <option value="+971">UAE +971</option>
+                </select>
+                <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone number..." type="tel" required />
+              </div>
+            </label>
             <button type="submit">Go To Step #2</button>
             <p>Receive updates, news, and offers via email and text</p>
           </form>
@@ -112,6 +142,13 @@ export default function TrialModal() {
               <option value="50-150">50 to 150</option>
               <option value="150-500">150 to 500</option>
               <option value="500-plus">500+</option>
+            </select>
+            <select name="timeline" value={form.timeline} onChange={handleChange} required>
+              <option value="">When do you want this live?</option>
+              <option value="asap">As soon as possible</option>
+              <option value="2-weeks">Within 2 weeks</option>
+              <option value="30-days">Within 30 days</option>
+              <option value="researching">Just researching</option>
             </select>
             <textarea
               name="message"
