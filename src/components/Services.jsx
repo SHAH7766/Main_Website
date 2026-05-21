@@ -1,28 +1,33 @@
 import React from 'react'
 import useInView from '../hooks/useInView'
-import digitalMarketingImage from '../assets/service-digital-marketing.svg'
 import aiAutomationImage from '../assets/service-ai-automation.svg'
-import webDesignImage from '../assets/service-web-design.svg'
 
 const serviceList = [
   {
-    title: 'Digital Marketing',
-    desc: 'SEO, paid media, content strategy, and analytics to drive measurable growth.',
-    image: digitalMarketingImage,
-    points: ['Search visibility', 'Paid campaigns', 'Performance reporting']
-  },
-  {
-    title: 'AI Automation',
-    desc: 'Automate repetitive tasks, personalize customer journeys, and unlock efficiency with AI.',
+    title: 'Instant Lead Response',
+    desc: 'AI replies to form fills, chats, DMs, and missed calls while the prospect is still paying attention.',
     image: aiAutomationImage,
-    points: ['Lead routing', 'CRM workflows', 'AI follow-ups']
+    points: ['Missed-call text-back', 'Chat qualification', 'Speed-to-lead routing']
   },
   {
-    title: 'Web Design & Development',
-    desc: 'Modern, responsive websites focused on conversions and performance.',
-    image: webDesignImage,
-    points: ['Landing pages', 'Responsive UI', 'Conversion paths']
+    title: 'Booking Automation',
+    desc: 'Smart reminders, confirmations, reschedules, and no-show recovery keep your calendar cleaner.',
+    image: aiAutomationImage,
+    points: ['Calendar sync', 'SMS reminders', 'No-show recovery']
+  },
+  {
+    title: 'Pipeline Follow-Up',
+    desc: 'Every lead gets a next step, every deal gets a nudge, and your team sees exactly what needs attention.',
+    image: aiAutomationImage,
+    points: ['CRM triggers', 'Task alerts', 'Reactivation campaigns']
   }
+]
+
+const automationFlow = [
+  'New lead enters from call, form, chat, ad, or inbox',
+  'AI qualifies intent and starts the right conversation',
+  'Workflow books, reminds, escalates, or tags the opportunity',
+  'Dashboard shows revenue actions your team should handle next'
 ]
 
 function ServiceCard({service, index}) {
@@ -54,18 +59,26 @@ export default function Services() {
     <section id="services" className="section-band">
       <div className="max-w-6xl mx-auto px-4">
         <div className="max-w-2xl">
-          <p className="section-kicker">What we sharpen</p>
-          <h2 className="section-title">Services built for momentum</h2>
-          <p className="section-copy">End-to-end solutions tailored to your goals, from a cleaner first impression to smarter follow-up after every lead.</p>
+          <p className="section-kicker">One focused service</p>
+          <h2 className="section-title">AI automation that runs the busy work behind your sales process</h2>
+          <p className="section-copy">We design the workflows, write the AI conversation logic, connect the CRM, and launch the automations that make follow-up fast, consistent, and trackable.</p>
         </div>
         <div className="mt-8 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {serviceList.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}
         </div>
+        <div className="automation-flow" aria-label="AI automation workflow">
+          {automationFlow.map((step, index) => (
+            <div key={step}>
+              <span>0{index + 1}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
         <div className="service-cta">
-          <p>Not sure what you need first?</p>
-          <a href="#contact">Get a focused recommendation</a>
+          <p>Want to know what should be automated first?</p>
+          <a href="#contact">Request an automation audit</a>
         </div>
       </div>
     </section>

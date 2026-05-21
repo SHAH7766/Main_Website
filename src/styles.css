@@ -2,59 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{--bg:#01151d}
+:root{--bg:#01151d;--coral:#ff7a59;--ink:#071821}
 
 html{scroll-behavior:smooth}
-html,body,#root{height:100%}
+html,body,#root{height:100%;overflow-x:hidden}
 body{@apply bg-baltic_blue-100 text-alice_blue antialiased}
 .app-root{position:relative;overflow:hidden}
-.app-root::before{content:'';position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(165,190,0,.05),transparent 24%,rgba(66,122,161,.08) 70%,transparent);z-index:0}
+.app-root::before{content:'';position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(165,190,0,.05),transparent 24%,rgba(255,122,89,.06) 48%,rgba(66,122,161,.08) 70%,transparent);z-index:0}
 .app-root > *{position:relative;z-index:1}
 
 /* hero section */
 .hero{position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:-3%;background-image:url('./assets/hero-abstract.svg');background-size:cover;background-position:center;filter:saturate(1.25) brightness(0.95);animation:hero-drift 22s ease-in-out infinite}
+.hero-bg{position:absolute;inset:-3%;background-image:url('./assets/hero-abstract.svg');background-size:cover;background-position:center;filter:saturate(1.35) brightness(0.95);animation:hero-drift 22s ease-in-out infinite}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(235,242,250,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(235,242,250,.06) 1px, transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom, transparent, black 20%, transparent 82%);opacity:.55}
+.hero-content{width:100%}
+.hero::after{content:'';position:absolute;left:50%;bottom:8rem;width:54rem;height:54rem;transform:translateX(-50%);border-radius:9999px;background:radial-gradient(circle,rgba(165,190,0,.16),transparent 62%);filter:blur(24px);pointer-events:none}
 
 /* small utilities */
-.site-footer{@apply text-alice_blue/70 py-6 text-center border-t border-alice_blue/10 bg-baltic_blue-100}
+.site-footer{@apply text-alice_blue/70 py-7 border-t border-alice_blue/10 bg-baltic_blue-100}
+.site-footer a{@apply transition hover:text-alice_blue}
 
 .nav-link{@apply relative px-3 py-2 transition-colors duration-200 hover:text-alice_blue}
 .nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.3rem;height:1px;background:#a5be00;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
 .nav-link:hover::after{transform:scaleX(1)}
+.brand-mark{@apply flex h-8 w-8 items-center justify-center bg-lime_moss text-sm font-black text-baltic_blue-100}
+.nav-cta{@apply ml-2 inline-flex items-center justify-center border border-lime_moss/40 bg-lime_moss px-4 py-2 text-sm font-bold text-baltic_blue-100 shadow-lg shadow-lime_moss/15 transition hover:-translate-y-0.5 hover:bg-lime_moss-700}
 .mobile-nav-link{@apply block py-3 text-alice_blue/85 transition-colors hover:text-alice_blue}
 .menu-button{@apply flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded border border-alice_blue/15 bg-alice_blue/5 text-alice_blue transition hover:bg-alice_blue/10}
 .menu-line{@apply block h-0.5 w-5 rounded-full bg-alice_blue transition duration-200}
 
-.hero-badge{@apply mb-6 inline-flex items-center gap-2 border border-lime_moss/40 bg-lime_moss/10 px-4 py-2 text-xs font-semibold uppercase text-lime_moss-800 shadow-lg shadow-baltic_blue-100/20 animate-fade-in-up}
+.hero-badge{@apply mb-6 inline-flex max-w-full flex-wrap items-center justify-center gap-2 whitespace-normal border border-lime_moss/40 bg-lime_moss/10 px-4 py-2 text-center text-[0.68rem] font-semibold uppercase text-lime_moss-800 shadow-lg shadow-baltic_blue-100/20 animate-fade-in-up sm:text-xs}
 .hero-title{@apply mx-auto max-w-5xl text-4xl font-extrabold leading-tight text-alice_blue sm:text-5xl md:text-7xl animate-fade-in-up animation-delay-100}
-.hero-copy{@apply mx-auto mt-5 max-w-2xl text-lg leading-8 text-rich_cerulean-900/85 animate-fade-in-up animation-delay-200}
-.hero-stats{@apply mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-3 text-left sm:grid-cols-3 animate-fade-in-up animation-delay-500}
-.hero-stats div{@apply border border-alice_blue/10 bg-alice_blue/[0.04] p-4 shadow-xl shadow-baltic_blue-100/20 backdrop-blur}
-.hero-stats strong{@apply block text-2xl text-alice_blue}
+.hero-copy{@apply mx-auto mt-5 max-w-2xl text-base leading-7 text-rich_cerulean-900/85 animate-fade-in-up animation-delay-200 sm:text-lg sm:leading-8}
+.hero-proof{@apply mx-auto mt-5 flex max-w-3xl flex-wrap justify-center gap-2}
+.hero-proof span{@apply border border-alice_blue/10 bg-alice_blue/[0.055] px-3 py-2 text-xs font-semibold text-rich_cerulean-900 backdrop-blur}
+.hero-stats{@apply mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-3 text-left sm:grid-cols-3 animate-fade-in-up animation-delay-500}
+.hero-stats div{@apply border border-alice_blue/10 bg-gradient-to-br from-alice_blue/[0.075] to-alice_blue/[0.025] p-5 shadow-xl shadow-baltic_blue-100/20 backdrop-blur}
+.hero-stats strong{@apply block text-3xl text-alice_blue}
 .hero-stats span{@apply mt-1 block text-sm text-rich_cerulean-900/80}
-.hero-preview{@apply mx-auto mt-8 max-w-4xl overflow-hidden border border-alice_blue/10 bg-baltic_blue-100/55 p-4 text-left shadow-2xl shadow-baltic_blue-100/30 backdrop-blur}
-.preview-toolbar{@apply flex gap-2 border-b border-alice_blue/10 pb-3}
+.hero-preview{@apply mx-auto mt-8 max-w-5xl overflow-hidden border border-lime_moss/20 bg-baltic_blue-100/65 p-4 text-left shadow-2xl shadow-lime_moss/10 backdrop-blur}
+.preview-toolbar{@apply flex items-center gap-2 border-b border-alice_blue/10 pb-3}
 .preview-toolbar span{@apply h-2.5 w-2.5 rounded-full bg-lime_moss/70}
-.preview-body{@apply grid gap-5 pt-5 sm:grid-cols-[1.2fr_0.8fr]}
-.preview-chart{@apply flex h-32 items-end gap-3 border border-alice_blue/10 bg-alice_blue/[0.035] p-4}
-.preview-chart i{@apply block flex-1 bg-gradient-to-t from-lime_moss to-rich_cerulean-800}
-.preview-copy{@apply flex flex-col justify-center gap-4}
-.preview-copy span{@apply block h-3 rounded-full bg-rich_cerulean-800/45}
-.preview-copy span:nth-child(1){width:80%}
-.preview-copy span:nth-child(2){width:62%}
-.preview-copy span:nth-child(3){width:72%}
+.preview-toolbar p{@apply ml-2 text-xs font-semibold uppercase tracking-[0.22em] text-rich_cerulean-900}
+.preview-body{@apply grid gap-5 pt-5 md:grid-cols-[1.45fr_0.55fr]}
+.preview-pipeline{@apply grid gap-3 sm:grid-cols-5}
+.preview-pipeline div{@apply min-h-32 border border-alice_blue/10 bg-alice_blue/[0.045] p-4}
+.preview-pipeline span{@apply block text-xs font-semibold uppercase tracking-[0.16em] text-rich_cerulean-900}
+.preview-pipeline strong{@apply mt-8 block text-3xl text-alice_blue}
+.preview-panel{@apply border border-lime_moss/20 bg-lime_moss/10 p-5}
+.preview-panel p{@apply text-sm font-bold uppercase tracking-[0.2em] text-lime_moss-800}
+.preview-panel span{@apply mt-4 block border-l-2 border-lime_moss bg-baltic_blue-100/45 px-3 py-2 text-sm text-alice_blue/90}
 
-.primary-button{@apply inline-flex items-center justify-center border border-lime_moss/50 bg-sage_green px-7 py-3 text-sm font-semibold text-alice_blue shadow-lg shadow-sage_green/25 transition duration-300 hover:-translate-y-0.5 hover:bg-sage_green-600 hover:shadow-lime_moss/30 focus:outline-none focus:ring-2 focus:ring-lime_moss focus:ring-offset-2 focus:ring-offset-baltic_blue-100}
+.primary-button{@apply inline-flex items-center justify-center border border-lime_moss/50 bg-lime_moss px-7 py-3 text-sm font-bold text-baltic_blue-100 shadow-lg shadow-lime_moss/25 transition duration-300 hover:-translate-y-0.5 hover:bg-lime_moss-700 hover:shadow-lime_moss/30 focus:outline-none focus:ring-2 focus:ring-lime_moss focus:ring-offset-2 focus:ring-offset-baltic_blue-100}
+.primary-button{background:linear-gradient(135deg,#dbfd00,#a5be00 56%,#7f9300)}
 .secondary-button{@apply inline-flex items-center justify-center border border-alice_blue/25 bg-alice_blue/[0.06] px-7 py-3 text-sm font-semibold text-alice_blue transition duration-300 hover:-translate-y-0.5 hover:bg-alice_blue/15}
+
+.trial-modal-overlay{@apply fixed inset-0 z-[80] flex items-start justify-center px-3 py-5 sm:items-center sm:py-8}
+.trial-modal-backdrop{@apply absolute inset-0 bg-baltic_blue-100/[0.72] backdrop-blur-sm}
+.trial-modal{@apply relative z-[81] w-full min-w-0 max-w-3xl overflow-hidden rounded-md border-4 border-white/85 bg-white p-5 text-baltic_blue-100 shadow-2xl shadow-black/40 animate-fade-in-up sm:p-7}
+.trial-modal-close{@apply absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#1d1d1d] text-lg font-black leading-none text-white shadow-lg transition hover:scale-105}
+.trial-modal-eyebrow{@apply -mx-5 -mt-5 mb-4 bg-lime_moss px-5 py-2 text-center text-xs font-bold text-baltic_blue-100 sm:-mx-7 sm:-mt-7}
+.trial-modal h2{@apply text-center text-2xl font-black leading-tight text-black sm:text-3xl}
+.trial-steps{@apply mt-5 grid grid-cols-2 overflow-hidden rounded-md border border-slate-200 bg-white}
+.trial-steps button{@apply relative bg-white px-3 py-3 text-center text-rich_cerulean-300 transition hover:bg-slate-50}
+.trial-steps button::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:#0f83d8;opacity:.2}
+.trial-steps button.active{@apply text-[#0f83d8]}
+.trial-steps button.active::after{opacity:1}
+.trial-steps button.active::before{content:'';position:absolute;left:50%;bottom:4px;transform:translateX(-50%);border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:9px solid #0f83d8}
+.trial-steps strong{@apply block text-sm}
+.trial-steps span{@apply mt-1 block text-xs}
+.trial-form{@apply mt-4 grid gap-3}
+.trial-form input,.trial-form select,.trial-form textarea{@apply w-full rounded border border-slate-300 bg-white px-4 py-3 text-sm text-baltic_blue-100 outline-none transition placeholder:text-slate-500 focus:border-[#0f83d8] focus:ring-2 focus:ring-[#0f83d8]/20}
+.trial-form textarea{@apply resize-none}
+.trial-form button[type="submit"]{@apply mt-1 rounded bg-[#118ced] px-5 py-4 text-lg font-black text-white shadow-lg shadow-[#118ced]/20 transition hover:-translate-y-0.5 hover:bg-[#0f7bd0]}
+.trial-form > p{@apply text-center text-xs text-slate-400}
+.trial-back{@apply rounded border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-baltic_blue-100 transition hover:bg-slate-50}
+
+.showcase-section{@apply relative overflow-hidden bg-baltic_blue-100 py-16}
+.showcase-section::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,122,89,.08),transparent 34%,rgba(165,190,0,.08));pointer-events:none}
+.showcase-inner{@apply relative mx-auto max-w-6xl px-4}
+.industry-strip{@apply mb-8 grid gap-2 border border-alice_blue/10 bg-alice_blue/[0.04] p-3 text-center shadow-2xl shadow-baltic_blue-100/20 sm:grid-cols-5}
+.industry-strip span{@apply border border-alice_blue/10 bg-baltic_blue-100/50 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-rich_cerulean-900}
+.showcase-layout{@apply grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center}
+.automation-list{@apply mt-8 grid gap-3}
+.automation-list article{@apply grid grid-cols-[auto_1fr] gap-4 border border-alice_blue/10 bg-alice_blue/[0.045] p-4 shadow-xl shadow-baltic_blue-100/15 transition hover:-translate-y-0.5 hover:border-lime_moss/35}
+.automation-list span{@apply flex h-10 w-10 items-center justify-center bg-lime_moss text-sm font-black text-baltic_blue-100}
+.automation-list h3{@apply font-bold text-alice_blue}
+.automation-list p{@apply mt-1 text-sm leading-6 text-rich_cerulean-900/80}
+.ai-console{@apply relative overflow-hidden border border-lime_moss/25 bg-[#061f27] p-5 shadow-2xl shadow-lime_moss/10}
+.ai-console::before{content:'';position:absolute;right:-8rem;top:-8rem;width:20rem;height:20rem;border-radius:9999px;background:rgba(165,190,0,.16);filter:blur(20px)}
+.ai-console > *{position:relative}
+.console-header{@apply flex items-center gap-2 border-b border-alice_blue/10 pb-4}
+.console-header span{@apply h-2.5 w-2.5 rounded-full bg-lime_moss/80}
+.console-header strong{@apply ml-2 text-xs uppercase tracking-[0.22em] text-rich_cerulean-900}
+.conversation-card{@apply mt-5 max-w-[82%] border border-alice_blue/10 p-4 shadow-xl shadow-baltic_blue-100/20}
+.conversation-card small{@apply text-xs font-black uppercase tracking-[0.18em] text-lime_moss-700}
+.conversation-card p{@apply mt-2 text-sm leading-6 text-alice_blue}
+.conversation-card.incoming{@apply bg-alice_blue/[0.05]}
+.conversation-card.outgoing{@apply ml-auto border-lime_moss/25 bg-lime_moss/10}
+.console-workflow{@apply mt-6 grid gap-3 sm:grid-cols-3}
+.console-workflow div{@apply border border-alice_blue/10 bg-baltic_blue-100/50 px-3 py-4 text-sm font-semibold text-rich_cerulean-900}
+.console-workflow span{@apply mb-3 block h-2 w-10 bg-lime_moss}
+.console-score{@apply mt-5 border border-alice_blue/10 bg-alice_blue/[0.045] p-5}
+.console-score strong{@apply text-5xl font-black text-alice_blue}
+.console-score p{@apply mt-2 max-w-sm text-sm text-rich_cerulean-900/85}
 
 .section-band{@apply relative overflow-hidden bg-gradient-to-b from-baltic_blue-100 to-baltic_blue-300/70 py-20}
 .section-band-alt{@apply from-baltic_blue-300/70 to-baltic_blue-100}
 .section-kicker{@apply text-sm font-semibold uppercase tracking-[0.28em] text-lime_moss-700}
 .section-title{@apply mt-3 text-3xl font-bold text-alice_blue sm:text-4xl}
 .section-copy{@apply mt-3 max-w-2xl text-rich_cerulean-900/80}
+.section-heading-center{@apply mx-auto max-w-3xl text-center}
+.section-heading-center .section-copy{@apply mx-auto}
 
-.service-card{@apply relative overflow-hidden border border-alice_blue/10 bg-alice_blue/[0.045] p-6 shadow-xl shadow-baltic_blue-100/15 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-lime_moss/40 hover:bg-alice_blue/[0.07] hover:shadow-lime_moss/10}
+.service-card{@apply relative overflow-hidden border border-alice_blue/10 bg-gradient-to-br from-alice_blue/[0.06] to-alice_blue/[0.025] p-6 shadow-xl shadow-baltic_blue-100/15 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-lime_moss/40 hover:bg-alice_blue/[0.07] hover:shadow-lime_moss/10}
 .service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(165,190,0,.16),transparent 38%);opacity:0;transition:opacity .3s ease}
 .service-card:hover::before{opacity:1}
 .service-card > *{position:relative}
@@ -64,17 +125,49 @@ body{@apply bg-baltic_blue-100 text-alice_blue antialiased}
 .service-index{@apply mb-8 text-sm font-semibold text-lime_moss-700}
 .service-points{@apply mt-5 flex flex-wrap gap-2}
 .service-points span{@apply border border-alice_blue/10 bg-baltic_blue-100/50 px-3 py-1 text-xs font-semibold text-rich_cerulean-900}
+.automation-flow{@apply mt-8 grid gap-3 border border-alice_blue/10 bg-baltic_blue-100/45 p-4 shadow-2xl shadow-baltic_blue-100/20 md:grid-cols-4}
+.automation-flow div{@apply relative min-h-36 border border-alice_blue/10 bg-alice_blue/[0.04] p-5}
+.automation-flow div::after{content:'';position:absolute;right:-1.05rem;top:50%;height:1px;width:1.05rem;background:rgba(165,190,0,.55)}
+.automation-flow div:last-child::after{display:none}
+.automation-flow span{@apply text-sm font-black text-lime_moss-700}
+.automation-flow p{@apply mt-8 text-sm leading-6 text-rich_cerulean-900}
 .service-cta{@apply mt-8 flex flex-col items-start justify-between gap-4 border border-lime_moss/20 bg-lime_moss/10 p-5 sm:flex-row sm:items-center}
 .service-cta p{@apply font-semibold text-alice_blue}
 .service-cta a{@apply text-sm font-bold uppercase tracking-[0.18em] text-lime_moss-700 transition hover:text-lime_moss-600}
 
-.results-section{@apply bg-baltic_blue-100 py-20}
+.results-section{@apply bg-[#f5f8fb] py-20 text-baltic_blue-100}
 .results-shell{@apply grid gap-6 border-y border-alice_blue/10 py-8 md:grid-cols-[1fr_0.85fr] md:items-end}
+.results-section .results-shell{@apply border-baltic_blue-100/10}
+.results-section .section-title{@apply text-baltic_blue-100}
+.results-section .section-copy{@apply text-rich_cerulean-300}
 .results-grid{@apply mt-8 grid gap-5 md:grid-cols-3}
-.result-card{@apply border border-alice_blue/10 bg-gradient-to-b from-alice_blue/[0.07] to-alice_blue/[0.025] p-6 shadow-xl shadow-baltic_blue-100/20 transition duration-300 hover:-translate-y-1 hover:border-lime_moss/35}
-.result-card span{@apply text-sm font-bold text-lime_moss-700}
-.result-card h3{@apply mt-8 text-xl font-semibold text-alice_blue}
-.result-card p{@apply mt-3 text-rich_cerulean-900/80}
+.result-card{@apply border border-baltic_blue-100/10 bg-white p-6 shadow-xl shadow-baltic_blue-100/10 transition duration-300 hover:-translate-y-1 hover:border-lime_moss/50}
+.result-card span{@apply text-3xl font-black text-baltic_blue-100}
+.result-card h3{@apply mt-8 text-xl font-semibold text-baltic_blue-100}
+.result-card p{@apply mt-3 text-rich_cerulean-300}
+
+.pricing-section{@apply bg-baltic_blue-100 py-20}
+.pricing-grid{@apply mt-10 grid gap-5 lg:grid-cols-3}
+.pricing-card{@apply relative flex min-h-[520px] flex-col border border-alice_blue/10 bg-gradient-to-br from-alice_blue/[0.06] to-alice_blue/[0.025] p-6 shadow-2xl shadow-baltic_blue-100/20 transition hover:-translate-y-1 hover:border-lime_moss/35}
+.pricing-card-featured{@apply border-lime_moss/45 bg-lime_moss/10}
+.pricing-ribbon{@apply absolute right-5 top-5 bg-[#ff7a59] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white}
+.pricing-card h3{@apply max-w-[12rem] text-2xl font-bold text-alice_blue}
+.pricing-card-featured h3{@apply max-w-[11rem]}
+.pricing-card strong{@apply mt-6 block text-4xl font-black text-alice_blue}
+.pricing-card p{@apply mt-4 text-rich_cerulean-900/80}
+.pricing-card ul{@apply my-8 grid gap-3 text-sm text-alice_blue/85}
+.pricing-card li{@apply border-l-2 border-lime_moss/70 bg-baltic_blue-100/40 px-3 py-2}
+.pricing-card a{@apply mt-auto}
+
+.testimonial-section{@apply bg-[#f5f8fb] py-20 text-baltic_blue-100}
+.testimonial-lead{@apply max-w-3xl}
+.testimonial-section .section-title{@apply text-baltic_blue-100}
+.testimonial-section .section-copy{@apply text-rich_cerulean-300}
+.testimonial-grid{@apply mt-9 grid gap-5 md:grid-cols-3}
+.testimonial-card{@apply flex min-h-72 flex-col justify-between border border-baltic_blue-100/10 bg-white p-6 shadow-xl shadow-baltic_blue-100/10 transition hover:-translate-y-1 hover:shadow-baltic_blue-100/20}
+.testimonial-card p{@apply text-lg leading-8 text-baltic_blue-200}
+.testimonial-card strong{@apply block text-baltic_blue-100}
+.testimonial-card span{@apply mt-1 block text-sm text-rich_cerulean-300}
 
 .contact-layout{@apply mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[0.9fr_1.1fr] md:items-center}
 .contact-copy{@apply text-left}
@@ -95,4 +188,21 @@ body{@apply bg-baltic_blue-100 text-alice_blue antialiased}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
+
+@media (max-width: 640px){
+  .hero-content{max-width:100vw}
+  .hero-badge,.hero-title,.hero-copy,.hero-stats,.hero-preview{max-width:17.5rem}
+  .hero-title{font-size:2rem}
+  .hero .primary-button,.hero .secondary-button{margin-left:auto;margin-right:auto;width:17.5rem;max-width:100%}
+  .automation-flow div::after{display:none}
+  .pricing-ribbon{position:static;display:inline-flex;width:max-content;margin-bottom:1rem}
+  .trial-modal-overlay{justify-content:flex-start}
+  .trial-modal{width:min(21rem, calc(100vw - 2rem));max-width:none;padding:1rem}
+  .trial-modal h2{font-size:1.45rem}
+  .trial-modal-close{right:.25rem;top:.25rem;height:1.75rem;width:1.75rem}
+  .trial-modal-eyebrow{margin-left:-1rem;margin-right:-1rem;margin-top:-1rem}
+  .trial-steps button{min-width:0;padding-left:.5rem;padding-right:.5rem}
+  .trial-steps span{font-size:.68rem}
+  .trial-form button[type="submit"]{font-size:1rem}
 }
